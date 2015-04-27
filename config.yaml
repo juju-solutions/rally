@@ -1,0 +1,10 @@
+options:
+  repository:
+    type: string
+    default: "https://github.com/openstack/rally.git"
+    description: "The repository for which to pull rally"
+  reference:
+    type: string
+    default: "master"
+    description: "Reference for which to pull rally"
+
