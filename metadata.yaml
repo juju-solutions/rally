@@ -1,6 +1,7 @@
 name: rally
 summary: Benchmark system of OpenStack
-maintainer: Marco Ceppi <marco@ceppi.net>
+maintainers:
+ - Marco Ceppi <marco@ceppi.net>
 description: |
   Rally is a Benchmark-as-a-Service project for OpenStack which allows users
   to make sure their OpenStack configurations are as performant as they intend
@@ -12,6 +13,8 @@ provides:
     interface: benchmark
   rally:
     interface: rally
+  website:
+    interface: http
 requires:
   credentials:
     interface: identity-admin

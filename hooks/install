@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eux
+
+# The most secure way to install software!
+
+curl https://raw.githubusercontent.com/openstack/rally/master/install_rally.sh | bash
+
+rally-manage db recreate
