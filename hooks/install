@@ -11,6 +11,8 @@ rm -f /var/www/html/index.html
 mkdir -p /var/www/html/rally
 service apache2 restart
 
+easy_install -i http://10.245.162.102:3141/root/pypi/+simple/ -U pip
+
 status-set maintenance "running install_rally.sh..."
 
 scripts/install_rally.sh -y
