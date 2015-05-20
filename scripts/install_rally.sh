@@ -729,11 +729,11 @@ install_db_connector
 # Install rally
 cd "$SOURCEDIR"
 # Install dependencies
-pip install pbr
-pip install 'tox<=1.6.1'
+pip install -i $BASE_PIP_URL $pbr
+pip install -i $BASE_PIP_URL 'tox<=1.6.1'
 # Install rally
 # python setup.py install
-pip install .
+pip install -i $BASE_PIP_URL .
 cd "$ORIG_WD"
 
 # Post-installation
