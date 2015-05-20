@@ -17,6 +17,6 @@ provides:
     interface: http
 requires:
   credentials:
-    interface: identity-admin
+    interface: keystone-admin
   test-runner:
     interface: tempest
