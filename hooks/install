@@ -6,14 +6,14 @@ set -eux
 
 status-set maintenance "installing apache2"
 
-apt-get install apache2
+apt-get install -y apache2
 rm -f /var/www/html/index.html
 mkdir -p /var/www/html/rally
 service apache2 restart
 
 status-set maintenance "running install_rally.sh..."
 
-scripts/install_rally.sh
+scripts/install_rally.sh -y
 
 status-set maintenance "creating rally database"
 
