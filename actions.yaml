@@ -1,0 +1,78 @@
+boot-and-delete:
+  description: Run the rally boot and delete scenario.
+  params:
+    flavor:
+      description: "Flavor name for benchmarking (args.flavor.name)"
+      type: string
+      default: m1.cirros
+    image:
+      description: "Image name for benchmarking (args.image.name)"
+      type: string
+      default: cirros
+    tenants:
+      description: "Number of tenants to use for context (context.user.tenants)"
+      type: integer
+      default: 10
+    users-per-tenant:
+      description: "Number of users per tenant (context.user.user_per_tenant)
+      type: integer
+      default: 1
+    times:
+      description: "Number of times to exec benchmark (runner.times)"
+      type: integer
+      default: 100
+    concurrency:
+      description: "Number of tests to run concurrently (runner.concurrency)"
+      type: integer
+      default: 10
+    networks-per-tenant:
+      description: "Number of networks to assign per tenant (context.network.networks-per-tenant)"
+      type: integer
+      default: 1
+  required:
+    - times
+    - image
+    - flavor
+    - user-per-tenant
+    - concurrency
+    - networks-per-tenant
+    - tenants
+boot:
+  description: Run the rally boot scenario.
+  params:
+    flavor:
+      description: "Flavor name for benchmarking (args.flavor.name)"
+      type: string
+      default: m1.cirros
+    image:
+      description: "Image name for benchmarking (args.image.name)"
+      type: string
+      default: cirros
+    tenants:
+      description: "Number of tenants to use for context (context.user.tenants)"
+      type: integer
+      default: 10
+    users-per-tenant:
+      description: "Number of users per tenant (context.user.user_per_tenant)
+      type: integer
+      default: 1
+    times:
+      description: "Number of times to exec benchmark (runner.times)"
+      type: integer
+      default: 100
+    concurrency:
+      description: "Number of tests to run concurrently (runner.concurrency)"
+      type: integer
+      default: 10
+    networks-per-tenant:
+      description: "Number of networks to assign per tenant (context.network.networks-per-tenant)"
+      type: integer
+      default: 1
+  required:
+    - times
+    - image
+    - flavor
+    - user-per-tenant
+    - concurrency
+    - networks-per-tenant
+    - tenants

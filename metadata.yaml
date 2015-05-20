@@ -18,3 +18,5 @@ provides:
 requires:
   credentials:
     interface: identity-admin
+  test-runner:
+    interface: tempest

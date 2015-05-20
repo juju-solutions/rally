@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -eux
+
+status-set maintenance "building results directory"
+
+rally_dir=/var/www/html/rally/$JUJU_ACTION_UUID
+rally_scenario=$rally_dir/scenario.yaml
+mkdir -p $rally_dir
+
+status-set maintenance "creating scenario file"
+
+cat > $rally_scenario <<EOF
+NovaServers.boot_and_delete_server:
+- args:
+    flavor:
+      name: $(action-get flavor)
+    image:
+      name: $(action-get image)
+  runner:
+    type: constant
+    times: $(action-get times)
+    concurrency: $(action-get concurrency)
+  context:
+    users:
+      tenants: $(action-get tenants)
+      users_per_tenant: $(action-get users-per-tenant)
+    network:
+      start_cidr: 10.20.0.0/16
+      networks_per_tenant: $(action-get networks-per-tenant)
+    quotas:
+      nova:
+        instances: -1
+        cores: -1
+        ram: -1
+        metadata_items: -1
+        injected_files: -1
+        injected_file_content_bytes: -1
+        injected_file_path_bytes: -1
+        key_pairs: -1
+      neutron:
+        network: -1
+        subnet: -1
+        port: -1
+        router: -1
+        floatingip: -1
+        security_group: -1
+        security_group_rule: -1
+  sla:
+    max_failure_percent: 0
+EOF
+
+. /root/.keystone_auth
+
+rally deployment create --fromenv --name=$JUJU_ACTION_UUID
+
+benchmark-start
+rally task start $rally_scenario
+benchmark-finish
+
+rally task report --out=$rally_dir/report.html
+
+#parse

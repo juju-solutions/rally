@@ -4,6 +4,23 @@ set -eux
 
 # The most secure way to install software!
 
-curl https://raw.githubusercontent.com/openstack/rally/master/install_rally.sh | bash
+status-set maintenance "installing apache2"
+
+apt-get install apache2
+rm -f /var/www/html/index.html
+mkdir -p /var/www/html/rally
+service apache2 restart
+
+status-set maintenance "running install_rally.sh..."
+
+scripts/install_rally.sh
+
+status-set maintenance "creating rally database"
 
 rally-manage db recreate
+
+status-set maintenance "installing benchmarking tools"
+
+pip install -i http://10.245.162.102:3141/root/pypi/+simple/ charm-benchmark
+
+status-set blocked "need to be related to a keystone"
