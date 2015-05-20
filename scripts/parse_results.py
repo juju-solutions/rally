@@ -38,8 +38,8 @@ for r in result['result']:
         actions[a] += v
 
 for a, v in actions.iteritems():
-    b.set_data({'results.%s.value' % a.replace('_', '-'), round(v / total, 3)})
-    b.set_data({'results.%s.units' % a.replace('_', '-'), 'seconds'})
-    b.set_data({'results.%s.direction' % a.replace('_', '-'), 'asc'})
+    b.set_data({'results.%s.value' % a.replace('_', '-'): round(v / total, 3)})
+    b.set_data({'results.%s.units' % a.replace('_', '-'): 'seconds'})
+    b.set_data({'results.%s.direction' % a.replace('_', '-'): 'asc'})
 
 b.set_composite_score(round(actions['total'] / total, 3), 'seconds', 'asc')
