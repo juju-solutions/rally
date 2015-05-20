@@ -14,7 +14,7 @@ boot-and-delete:
       type: integer
       default: 10
     users-per-tenant:
-      description: "Number of users per tenant (context.user.user_per_tenant)
+      description: "Number of users per tenant (context.user.user_per_tenant)"
       type: integer
       default: 1
     times:
@@ -53,7 +53,7 @@ boot:
       type: integer
       default: 10
     users-per-tenant:
-      description: "Number of users per tenant (context.user.user_per_tenant)
+      description: "Number of users per tenant (context.user.user_per_tenant)"
       type: integer
       default: 1
     times:
