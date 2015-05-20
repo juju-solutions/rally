@@ -29,14 +29,6 @@ boot-and-delete:
       description: "Number of networks to assign per tenant (context.network.networks-per-tenant)"
       type: integer
       default: 1
-  required:
-    - times
-    - image
-    - flavor
-    - user-per-tenant
-    - concurrency
-    - networks-per-tenant
-    - tenants
 boot:
   description: Run the rally boot scenario.
   params:
@@ -68,11 +60,3 @@ boot:
       description: "Number of networks to assign per tenant (context.network.networks-per-tenant)"
       type: integer
       default: 1
-  required:
-    - times
-    - image
-    - flavor
-    - user-per-tenant
-    - concurrency
-    - networks-per-tenant
-    - tenants
