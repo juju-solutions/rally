@@ -67,4 +67,8 @@ rally task report --out=$rally_dir/report.html
 
 status-set maintenance "parsing output"
 
+action-set meta.url="http://$(unit-get public-address)/rally/$JUJU_ACTION_UUID"
+rally task results > $rally_dir/results.json
+scripts/parse_results.py $rally_dir/results.json || true
+
 status-set active "ready to benchmark"
