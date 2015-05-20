@@ -18,13 +18,13 @@ result = results[0]
 
 b = Benchmark()
 
-b.set_data({'results.full_duration.value': result['full_duration']})
-b.set_data({'results.full_duration.units': 'seconds'})
-b.set_data({'results.full_duration.direction': 'asc'})
+b.set_data({'results.full-duration.value': result['full_duration']})
+b.set_data({'results.full-duration.units': 'seconds'})
+b.set_data({'results.full-duration.direction': 'asc'})
 
-b.set_data({'results.load_duration.value': result['load_duration']})
-b.set_data({'results.full_duration.units': 'seconds'})
-b.set_data({'results.full_duration.direction': 'asc'})
+b.set_data({'results.load-duration.value': result['load_duration']})
+b.set_data({'results.full-duration.units': 'seconds'})
+b.set_data({'results.full-duration.direction': 'asc'})
 
 actions = {'total': 0}
 total = len(result['result'])
@@ -38,8 +38,8 @@ for r in result['result']:
         actions[a] += v
 
 for a, v in actions:
-    b.set_data({'results.%s.value' % a, round(v / total, 3)})
-    b.set_data({'results.%s.units' % a, 'seconds'})
-    b.set_data({'results.%s.direction' % a, 'asc'})
+    b.set_data({'results.%s.value' % a.replace('_', '-'), round(v / total, 3)})
+    b.set_data({'results.%s.units' % a.replace('_', '-'), 'seconds'})
+    b.set_data({'results.%s.direction' % a.replace('_', '-'), 'asc'})
 
 b.set_composite_score(round(actions['total'] / total, 3), 'seconds', 'asc')
