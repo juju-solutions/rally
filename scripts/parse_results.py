@@ -41,3 +41,5 @@ for a, v in actions:
     b.set_data({'results.%s.value' % a, round(v / total, 3)})
     b.set_data({'results.%s.units' % a, 'seconds'})
     b.set_data({'results.%s.direction' % a, 'asc'})
+
+b.set_composite_score(round(actions['total'] / total, 3), 'seconds', 'asc')
