@@ -23,14 +23,14 @@ b.set_data({'results.full-duration.units': 'seconds'})
 b.set_data({'results.full-duration.direction': 'asc'})
 
 b.set_data({'results.load-duration.value': result['load_duration']})
-b.set_data({'results.full-duration.units': 'seconds'})
-b.set_data({'results.full-duration.direction': 'asc'})
+b.set_data({'results.load-duration.units': 'seconds'})
+b.set_data({'results.load-duration.direction': 'asc'})
 
 actions = {'total': 0}
 total = len(result['result'])
 
 for r in result['result']:
-    actions['total'] += r.duration
+    actions['total'] += r['duration']
     for a, v in r['atomic_actions'].iteritems():
         if a not in actions:
             actions[a] = 0
