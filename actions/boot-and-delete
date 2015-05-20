@@ -52,12 +52,19 @@ EOF
 
 . /root/.keystone_auth
 
+status-set maintenance "creating rally deployment"
+
 rally deployment create --fromenv --name=$JUJU_ACTION_UUID
 
+status-set maintenance "benchmark started"
 benchmark-start
 rally task start $rally_scenario
 benchmark-finish
+status-set maintenance "benchmark finished"
 
+status-set maintenance "building report"
 rally task report --out=$rally_dir/report.html
 
-#parse
+status-set maintenance "parsing output"
+
+status-set active "ready to benchmark"
