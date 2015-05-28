@@ -18,5 +18,8 @@ status-set maintenance "installing benchmarking tools"
 
 pip install -i $BASE_PIP_URL charm-benchmark
 
-status-set blocked "need to be related to a keystone"
-
+if [ ! -f /root/.keystone_auth ]; then
+  status-set blocked "need to be related to a keystone"
+else
+  status-set active "ready to benchmark"
+fi
