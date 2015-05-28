@@ -1,0 +1,6 @@
+options:
+  pypi-index:
+    description: "If you are behind restrictive firewalls you will need to setup a Pip proxy with the required packages. This is the Pypi URL for that"
+    type: string
+    default: 
+    

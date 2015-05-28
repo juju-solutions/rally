@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -eux
+
+export BASE_PIP_URL=`config-get pypi-index`
+
+easy_install -i $BASE_PIP_URL -U pip
+
+status-set maintenance "running install_rally.sh..."
+
+scripts/install_rally.sh -y
+
+status-set maintenance "creating rally database"
+
+rally-manage db recreate
+
+status-set maintenance "installing benchmarking tools"
+
+pip install -i $BASE_PIP_URL charm-benchmark
+
+status-set blocked "need to be related to a keystone"
+

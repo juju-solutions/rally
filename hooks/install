@@ -11,18 +11,4 @@ rm -f /var/www/html/index.html
 mkdir -p /var/www/html/rally
 service apache2 restart
 
-easy_install -i http://10.245.162.102:3141/root/pypi/+simple/ -U pip
-
-status-set maintenance "running install_rally.sh..."
-
-scripts/install_rally.sh -y
-
-status-set maintenance "creating rally database"
-
-rally-manage db recreate
-
-status-set maintenance "installing benchmarking tools"
-
-pip install -i http://10.245.162.102:3141/root/pypi/+simple/ charm-benchmark
-
-status-set blocked "need to be related to a keystone"
+status-set waiting "need to install rally"
