@@ -6,16 +6,17 @@ export BASE_PIP_URL=`config-get pypi-index`
 
 easy_install -i $BASE_PIP_URL -U pip
 
-status-set maintenance "running install_rally.sh..."
+status-set waiting "donwloading latest install_rally.sh..."
+wget -q -O /tmp/install_rally.sh https://raw.githubusercontent.com/openstack/rally/master/install_rally.sh
+chmod +x /tmp/install_rally.sh
 
-scripts/install_rally.sh -y
+status-set maintenance "running install_rally.sh..."
+/tmp/install_rally.sh -y
 
 status-set maintenance "creating rally database"
-
 rally-manage db recreate
 
 status-set maintenance "installing benchmarking tools"
-
 pip install -i $BASE_PIP_URL charm-benchmark
 
 if [ ! -f /root/.keystone_auth ]; then
