@@ -4,11 +4,11 @@ set -eux
 
 # The most secure way to install software!
 
-status-set maintenance "installing apache2"
+status-set maintenance "installing apache2" || juju-log "installing apache2"
 
 apt-get install -y apache2
 rm -f /var/www/html/index.html
 mkdir -p /var/www/html/rally
 service apache2 restart
 
-status-set waiting "need to install rally"
+status-set waiting "need to install rally" || true
